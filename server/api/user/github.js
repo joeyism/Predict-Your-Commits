@@ -2,6 +2,7 @@
 var request = require("request");
 var Promise = require("promise");
 var url = require("./url");
+var query = require("../../config.json");
 var headers = {
     "User-Agent":"joeyism"
 };
@@ -25,6 +26,7 @@ var getUserRepo = function(user){
         var options = {
             method:"GET",
             url: url.getUserRepo(user),
+            qs: query,
             headers: headers
         };
         request(options, function(err, response, body){
@@ -44,6 +46,7 @@ var getCommits = function(project){
         var options = {
             method: "GET",
             url: url.getCommits(project),
+            qs: query,
             headers: headers
         };
         request(options, function(err, response, body){

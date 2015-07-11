@@ -1,11 +1,16 @@
 'use strict';
 
 angular.module('predictYourCommitsApp')
-  .controller('MainCtrl', function ($scope, $http) {
-    $scope.awesomeThings = [];
+  .controller('MainCtrl', function ($scope, $location) {
 
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-    });
+      $scope.press = function($event){
+        if ($event.keyCode ==13){
+            $scope.submit();
+        }
+      };
+
+      $scope.submit = function(){
+        $location.path("/commits/"+$scope.username);
+      };
 
   });

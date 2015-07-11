@@ -19,7 +19,7 @@ var getAllCommits = function(list){
                 reject(err);
             }
             else {
-                resolve(totalCommits);
+                resolve(totalCommits.sort());
             }
         });
     });
@@ -34,12 +34,13 @@ module.exports = function(req, res){
         return getAllCommits(result);
 
     }).then(function(result){
-    
-        console.log(result);
+
+        res.status(200).json(result);    
 
     }).catch(function(err){
 
         console.log(err.toString().red);
+        res.status(400).send(err.toString());
 
     });
 
