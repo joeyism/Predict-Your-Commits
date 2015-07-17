@@ -9,13 +9,48 @@ angular.module('predictYourCommitsApp').directive("predictYourCommits", ["$http"
             username: '='
         },
         link: function(scope){
+            scope.loaded = false;
 
             $http.get("/api/user/"+scope.username).success(function(commits){
-                scope.commits = commits;
+                scope.loaded = true;
+                scope.chartConfig = {
+                    options: {
+                        chart: {
+                            type: 'spline'
+                        },
+                        tooltip: {
+                            style: {
+                                padding: 10,
+                                fontWeight: 'bold'
+                            },
+                            pointFormat: 'Commits: {point.y:f}',
+                            xDateFormat: '%Y-%m-%d',
+                        }
+                    },
+                    series:[{
+                        data: commits
+                    }],
+                    title: {
+                        text: scope.username + " commits"
+                    },
+                    xAxis: {
+                        type: 'datetime',
+                        title: {
+                            text: 'Date'
+                        }
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Number of Commits'
+                        },
+                        min: 0
+                    },
+                    loading: false
+                }; 
             }).error(function(error){
                 console.log(error); 
             });
-        
+
         }
     };
 

@@ -1,5 +1,6 @@
 "use strict";
 var github = require("./github");
+var data = require("./data");
 var async = require("async");
 require("colors");
 
@@ -32,6 +33,14 @@ module.exports = function(req, res){
     github.getUserRepo(user).then(function(result){
 
         return getAllCommits(result);
+
+    }).then(function(result){
+
+        return data.bin(result);
+
+    }).then(function(result){
+
+        return data.parse(result);
 
     }).then(function(result){
 
