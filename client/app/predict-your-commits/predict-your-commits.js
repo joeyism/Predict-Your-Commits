@@ -13,6 +13,13 @@ angular.module('predictYourCommitsApp').directive("predictYourCommits", ["$http"
 
             $http.get("/api/user/"+scope.username).success(function(commits){
                 scope.loaded = true;
+                var dataSeries = [];
+                Object.keys(commits).forEach(function(repo){
+                    dataSeries.push({
+                        name: repo,
+                        data: commits[repo]
+                    });
+                })
                 scope.chartConfig = {
                     options: {
                         chart: {
@@ -23,14 +30,11 @@ angular.module('predictYourCommitsApp').directive("predictYourCommits", ["$http"
                                 padding: 10,
                                 fontWeight: 'bold'
                             },
-                            pointFormat: 'Commits: {point.y:f}',
+                            pointFormat: 'Commits to {series.name}: {point.y:f}',
                             xDateFormat: '%Y-%m-%d',
                         }
                     },
-                    series:[{
-                        name: "Total",
-                        data: commits
-                    }],
+                    series: dataSeries,
                     title: {
                         text: "Number of commits by " + scope.username
                     },
@@ -49,7 +53,8 @@ angular.module('predictYourCommitsApp').directive("predictYourCommits", ["$http"
                     loading: false
                 }; 
             }).error(function(error){
-                console.log(error); 
+                scope.error = "Could not find "+scope.username +" :( ";
+                scope.error2 = "Are you sure you have the spelling correct, or that "+scope.username+" is a real person and not just a figment of your imagination?";
             });
 
         }

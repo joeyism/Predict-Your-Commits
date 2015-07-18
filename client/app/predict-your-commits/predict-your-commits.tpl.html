@@ -4,6 +4,8 @@
     </div>
     <div ng-if="!loaded">
         <img class="commits-loading-image" src="/app/images/daftpunktocat-thomas.gif">
+        <div class="error-message">{{error}}</div>
+        <div class="error-message">{{error2}}</div>
     </div>
     <div ng-if="loaded">
         <highchart id="chart1" config="chartConfig"></highchart>
