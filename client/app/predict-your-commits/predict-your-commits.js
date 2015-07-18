@@ -28,10 +28,11 @@ angular.module('predictYourCommitsApp').directive("predictYourCommits", ["$http"
                         }
                     },
                     series:[{
+                        name: "Total",
                         data: commits
                     }],
                     title: {
-                        text: scope.username + " commits"
+                        text: "Number of commits by " + scope.username
                     },
                     xAxis: {
                         type: 'datetime',
