@@ -7,3 +7,4 @@ dist
 /server/config/local.env.js
 /server/config.json
 *.swp
+!node_modules/timestamp-binning/*

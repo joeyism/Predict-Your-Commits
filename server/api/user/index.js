@@ -14,7 +14,7 @@ var getAllCommits = function(list){
             github.getCommits(project).then(function(result){
 
                 data.bin(result).then(function(binnedData){
-
+                    
                     return data.parse(binnedData);
 
                 }).then(function(parsedData){
