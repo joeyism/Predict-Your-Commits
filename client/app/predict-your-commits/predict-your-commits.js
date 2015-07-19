@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module('predictYourCommitsApp').directive("predictYourCommits", ["$http", function($http){
+angular.module('predictYourCommitsApp').directive("predictYourCommits", ["$http","$state", function($http, $state){
     var textColor = "#F3C110";
     var backgroundColor = "#393531";
     var legendTextColor = "#B5A6D3";
@@ -14,6 +14,8 @@ angular.module('predictYourCommitsApp').directive("predictYourCommits", ["$http"
             username: '='
         },
         link: function(scope){
+            scope.$state = $state;
+
             scope.loaded = false;
             var textStyle = {
                 color: textColor

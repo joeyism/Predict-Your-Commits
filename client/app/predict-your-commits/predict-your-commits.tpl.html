@@ -10,4 +10,7 @@
     <div ng-if="loaded">
         <highchart id="chart1" config="chartConfig"></highchart>
     </div>
+    <div ng-if="error || loaded" class="main-button-wrapper">
+        <button type="button" class="main-button" ng-click="$state.go('main')">Back</button> 
+    </div>
 </div>
