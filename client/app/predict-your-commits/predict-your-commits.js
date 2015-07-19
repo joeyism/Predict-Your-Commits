@@ -4,7 +4,7 @@ angular.module('predictYourCommitsApp').directive("predictYourCommits", ["$http"
     var textColor = "#F3C110";
     var backgroundColor = "#393531";
     var legendTextColor = "#B5A6D3";
-    var legendHoverColor = "#F1D9FB";
+    var legendHoverColor = "#ffffff";
     var legendHiddenColor = "#1D2F43";
 
     return {

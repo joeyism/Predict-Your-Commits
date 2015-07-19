@@ -3,7 +3,11 @@
         {{username}}
     </div>
     <div ng-if="!loaded">
-        <img class="commits-loading-image" src="/app/images/daftpunktocat-thomas.gif">
+        <!-- 
+            Image taken from https://octodex.github.com/daftpunktocat-thomas/
+        -->         
+        <img class="commits-loading-image" src="/app/images/daftpunktocat-thomas.gif" title="In Octocat language, this means we're married">
+        <div class="main-text">(This means loading, by the way...)</div> 
         <div class="error-message">{{error}}</div>
         <div class="error-message">{{error2}}</div>
     </div>

@@ -26,7 +26,7 @@ var getAllCommits = function(list){
                 totalCommits = totalCommits.concat(result);
                 next();
             }).catch(function(err){
-                next(err);
+                next();
             });
         }, 
         function(err){
