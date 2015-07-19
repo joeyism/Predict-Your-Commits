@@ -5,13 +5,13 @@ var extract = require("./extract");
 var async = require("async");
 require("colors");
 
-var getAllCommits = function(list){
+var getAllCommits = function(list, username){
     var allProjects = {};
 
     return new Promise(function(resolve, reject){
         var totalCommits = [];
         async.eachSeries(list, function(project, next){
-            github.getCommits(project).then(function(result){
+            github.getCommits(project, username).then(function(result){
 
                 data.bin(result).then(function(binnedData){
                     
@@ -48,7 +48,7 @@ module.exports = function(req, res){
 
     github.getUserRepo(user).then(function(result){
 
-        return getAllCommits(result);
+        return getAllCommits(result, user);
 
     }).then(function(result){
 

@@ -41,7 +41,7 @@ var getUserRepo = function(user){
     });
 };
 
-var getCommits = function(project){
+var getCommits = function(project, username){
     return new Promise(function(resolve, reject){
         var options = {
             method: "GET",
@@ -53,7 +53,9 @@ var getCommits = function(project){
             rejectOtherwise(err, response, body, reject, function(){
                 var commitsForProject = [];
                 JSON.parse(body).forEach(function(commit){
-                    commitsForProject.push(commit.commit.committer.date);
+                    if (commit.commit.committer.name === username){
+                        commitsForProject.push(commit.commit.committer.date);
+                    }
                 });
                 resolve(commitsForProject);
             });
