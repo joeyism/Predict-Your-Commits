@@ -86,6 +86,7 @@ angular.module('predictYourCommitsApp').directive("predictYourCommits", ["$http"
             }).error(function(error){
                 scope.error = "Could not find "+scope.username +" :( ";
                 scope.error2 = "Are you sure you have the spelling correct, or that "+scope.username+" is a real person and not just a figment of your imagination?";
+                scope.error3 = "Sometimes this happens if the user has too many commits and too many repositories..." 
             });
 
         }
